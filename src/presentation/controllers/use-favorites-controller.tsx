@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {ToggleFavorite} from "../../domain/use-cases/toggle-favorite";
+import { useEffect, useState } from 'react';
+import { ToggleFavorite } from '../../domain/use-cases/toggle-favorite';
 
 export const useFavoritesController = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -20,5 +20,5 @@ export const useFavoritesController = () => {
     return useCase.isFavorite(id);
   };
 
-  return {favorites, toggleFavorite, isFavorite};
+  return { favorites, toggleFavorite, isFavorite };
 };

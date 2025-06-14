@@ -1,15 +1,15 @@
-import {useAppState} from "../../infrastructure/store/appState";
-import {Character} from "../../domain/entities/character";
-import {FC} from "react";
-import {CiHeart} from "react-icons/ci";
-import {FaHeart} from "react-icons/fa";
+import { useAppState } from '../../infrastructure/store/appState';
+import { Character } from '../../domain/entities/character';
+import { FC } from 'react';
+import { CiHeart } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa';
 
 type Props = {
   character: Character;
 };
 
-const CharacterDetail: FC<Props> = ({character}) => {
-  const {isFavorite, toggleFavorite} = useAppState();
+const CharacterDetail: FC<Props> = ({ character }) => {
+  const { isFavorite, toggleFavorite } = useAppState();
 
   if (!character) {
     return <p className="text-center mt-10 text-gray-500">Loading...</p>;
@@ -26,16 +26,12 @@ const CharacterDetail: FC<Props> = ({character}) => {
           />
           <button
             onClick={() => toggleFavorite(character.id)}
-            aria-label={
-              isFavorite(character.id)
-                ? "Remove from favorites"
-                : "Add to favorites"
-            }
+            aria-label={isFavorite(character.id) ? 'Remove from favorites' : 'Add to favorites'}
             className={`absolute left-30 bottom-0  w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-200 cursor-pointer
               ${
                 isFavorite(character.id)
-                  ? "bg-green-100 text-[#53C629] border-[#53C629] hover:bg-green-200"
-                  : "text-[#D1D5DB] border-[#D1D5DB] bg-gray-50"
+                  ? 'bg-green-100 text-[#53C629] border-[#53C629] hover:bg-green-200'
+                  : 'text-[#D1D5DB] border-[#D1D5DB] bg-gray-50'
               }
             `}
           >
@@ -47,9 +43,7 @@ const CharacterDetail: FC<Props> = ({character}) => {
           </button>
         </div>
 
-        <h1 className="text-2xl font-bold text-[#111827] mb-1">
-          {character.name}
-        </h1>
+        <h1 className="text-2xl font-bold text-[#111827] mb-1">{character.name}</h1>
         <div className="mt-2 text-sm text-gray-700 space-y-1 align-start w-full">
           <p className="border-b border-gray-200 pb-2">
             <strong>Species:</strong>

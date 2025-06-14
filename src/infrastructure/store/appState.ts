@@ -1,5 +1,5 @@
-import {create} from "zustand";
-import {Character} from "../../domain/entities/character";
+import { create } from 'zustand';
+import { Character } from '../../domain/entities/character';
 
 type Filters = {
   search: string;
@@ -21,19 +21,19 @@ type AppState = {
 };
 
 const defaultFilters: Readonly<Filters> = {
-  search: "",
-  status: "",
-  species: "",
-  gender: "",
-  character: "All",
+  search: '',
+  status: '',
+  species: '',
+  gender: '',
+  character: 'All',
 };
 
 export const useAppState = create<AppState>((set, get) => ({
-  favorites: JSON.parse(localStorage.getItem("favorite-characters") || "[]"),
+  favorites: JSON.parse(localStorage.getItem('favorite-characters') || '[]'),
   characters: [],
   filters: defaultFilters,
   setCharacters: (characters) => {
-    set({characters});
+    set({ characters });
   },
   setFilter: (key, value) => {
     set((state) => ({
@@ -50,12 +50,10 @@ export const useAppState = create<AppState>((set, get) => ({
   },
   toggleFavorite: (id) => {
     const current = get().favorites;
-    const updated = current.includes(id)
-      ? current.filter((f) => f !== id)
-      : [...current, id];
+    const updated = current.includes(id) ? current.filter((f) => f !== id) : [...current, id];
 
-    localStorage.setItem("favorite-characters", JSON.stringify(updated));
-    set({favorites: updated});
+    localStorage.setItem('favorite-characters', JSON.stringify(updated));
+    set({ favorites: updated });
   },
   isFavorite: (id) => {
     return get().favorites.includes(id);

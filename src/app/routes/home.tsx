@@ -1,16 +1,14 @@
-import {useCharacterListController} from "../../presentation/controllers/use-character-list-controller";
-import {Character} from "../../domain/entities/character";
-import {useState} from "react";
-import {CharacterListItem} from "../../presentation/components/character-list-item";
-import CharacterDetail from "../../presentation/components/character-detail";
-import {FilterPanel} from "../../presentation/components/filter-panel";
+import { useCharacterListController } from '../../presentation/controllers/use-character-list-controller';
+import { Character } from '../../domain/entities/character';
+import { useState } from 'react';
+import { CharacterListItem } from '../../presentation/components/character-list-item';
+import CharacterDetail from '../../presentation/components/character-detail';
+import { FilterPanel } from '../../presentation/components/filter-panel';
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-    null
-  );
-  const {starred, others} = useCharacterListController();
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const { starred, others } = useCharacterListController();
 
   const handleClick = (character: Character) => {
     setSelectedCharacter(character);
@@ -48,7 +46,7 @@ const Home = () => {
       {/* Sidebar */}
       <aside
         className={`bg-white border-r p-4 lg:pt-4 w-100 z-40 absolute lg:static top-0 h-full transition-transform transform overflow-x-hidden ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
+          menuOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 lg:flex lg:flex-col overflow-y-auto`}
       >
         <h2 className="text-2xl font-greycliff  pt-10 font-normal text-[#1F2937] leading-8 mb-4">

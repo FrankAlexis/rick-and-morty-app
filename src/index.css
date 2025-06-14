@@ -1,9 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
   font-family: 'Greycliff CF';
-  src: url('/fonts/Fontspring-DEMO-greycliffcf-regular.otf') format('opentype'),
-  url('/fonts/Fontspring-DEMO-greycliffcf-regularoblique.otf') format('opentype');
+  src:
+    url('/fonts/Fontspring-DEMO-greycliffcf-regular.otf') format('opentype'),
+    url('/fonts/Fontspring-DEMO-greycliffcf-regularoblique.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -25,8 +26,7 @@
   font-display: swap;
 }
 
-
 body {
   font-family: 'Greycliff CF', sans-serif;
-  font-weight: 500; 
+  font-weight: 500;
 }

@@ -1,18 +1,18 @@
-import {useEffect} from "react";
-import {CharacterRepositoryImpl} from "../../infrastructure/repositories/character-repository-impl";
-import {GetCharacters} from "../../domain/use-cases/get-characters";
-import {useAppState} from "../../infrastructure/store/appState";
+import { useEffect } from 'react';
+import { CharacterRepositoryImpl } from '../../infrastructure/repositories/character-repository-impl';
+import { GetCharacters } from '../../domain/use-cases/get-characters';
+import { useAppState } from '../../infrastructure/store/appState';
 
 export const useCharacterListController = () => {
-  const {filters, isFavorite, characters, setCharacters} = useAppState();
+  const { filters, isFavorite, characters, setCharacters } = useAppState();
 
   const starred =
-    filters.character === "Starred" || filters.character === "All"
+    filters.character === 'Starred' || filters.character === 'All'
       ? characters.filter((c) => isFavorite(c.id))
       : [];
 
   const others =
-    filters.character === "Others" || filters.character === "All"
+    filters.character === 'Others' || filters.character === 'All'
       ? characters.filter((c) => !isFavorite(c.id))
       : [];
 
@@ -30,5 +30,5 @@ export const useCharacterListController = () => {
       .then(setCharacters);
   }, [filters, setCharacters]);
 
-  return {characters, starred, others};
+  return { characters, starred, others };
 };

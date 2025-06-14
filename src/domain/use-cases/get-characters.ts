@@ -1,5 +1,5 @@
-import type {Character} from "../entities/character";
-import type {CharacterRepository} from "../repositories/character-repository";
+import type { Character } from '../entities/character';
+import type { CharacterRepository } from '../repositories/character-repository';
 
 export class GetCharacters {
   characterRepo: CharacterRepository;

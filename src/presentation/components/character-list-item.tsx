@@ -1,7 +1,7 @@
-import {FC} from "react";
-import {Character} from "../../domain/entities/character";
-import {CiHeart} from "react-icons/ci";
-import {FaHeart} from "react-icons/fa";
+import { FC } from 'react';
+import { Character } from '../../domain/entities/character';
+import { CiHeart } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa';
 
 type Props = {
   character: Character;
@@ -16,13 +16,13 @@ export const CharacterListItem: FC<Props> = ({
   isFavorite = false,
   onClick,
   selected = false,
-  className = "",
+  className = '',
 }) => {
   return (
     <li onClick={() => onClick(character)} className={className}>
       <div
         className={`flex justify-between items-center px-5 py-4 rounded-lg transition-all cursor-pointer w-full
-    ${selected ? "bg-[#EEE3FF]" : ""}`}
+    ${selected ? 'bg-[#EEE3FF]' : ''}`}
       >
         <img
           src={character.image}
@@ -35,12 +35,8 @@ export const CharacterListItem: FC<Props> = ({
         </div>
         <span
           className={`text-2xl p-[7px] ${
-            isFavorite
-              ? "text-[#53C629] border-[#53C629]"
-              : "text-[#D1D5DB] border-[#D1D5DB]"
-          } ${
-            selected ? "bg-white" : ""
-          } rounded-full p-1 transition-all cursor-pointer`}
+            isFavorite ? 'text-[#53C629] border-[#53C629]' : 'text-[#D1D5DB] border-[#D1D5DB]'
+          } ${selected ? 'bg-white' : ''} rounded-full p-1 transition-all cursor-pointer`}
         >
           {isFavorite ? (
             <FaHeart className="w-6 h-6 fill-[#53C629]" />
