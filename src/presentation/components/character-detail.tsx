@@ -34,15 +34,15 @@ const CharacterDetail: FC<Props> = ({character}) => {
             className={`absolute left-30 bottom-0  w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-200 cursor-pointer
               ${
                 isFavorite(character.id)
-                  ? "bg-green-100 text-green-600 border-green-300 hover:bg-green-200"
-                  : "bg-gray-100 text-gray-400 border-gray-300 hover:bg-gray-200"
+                  ? "bg-green-100 text-[#53C629] border-[#53C629] hover:bg-green-200"
+                  : "text-[#D1D5DB] border-[#D1D5DB] bg-gray-50"
               }
             `}
           >
             {isFavorite(character.id) ? (
-              <FaHeart className="w-5 h-5 fill-amber-200" />
+              <FaHeart className="w-4 h-4 fill-[#53C629]" />
             ) : (
-              <CiHeart className="w-5 h-5 fill-black" />
+              <CiHeart className="w-4 h-4 fill-[#D1D5DB]" />
             )}
           </button>
         </div>

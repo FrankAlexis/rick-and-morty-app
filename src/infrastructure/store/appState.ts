@@ -1,4 +1,5 @@
 import {create} from "zustand";
+import {Character} from "../../domain/entities/character";
 
 type Filters = {
   search: string;
@@ -10,21 +11,29 @@ type Filters = {
 
 type AppState = {
   filters: Filters;
+  characters: Character[];
   setFilter: (key: keyof Filters, value: string) => void;
+  setCharacters: (characters: Character[]) => void;
   resetFilters: () => void;
   favorites: string[];
   toggleFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
 };
 
+const defaultFilters: Readonly<Filters> = {
+  search: "",
+  status: "",
+  species: "",
+  gender: "",
+  character: "All",
+};
+
 export const useAppState = create<AppState>((set, get) => ({
   favorites: JSON.parse(localStorage.getItem("favorite-characters") || "[]"),
-  filters: {
-    search: "",
-    status: "",
-    species: "",
-    gender: "",
-    character: "",
+  characters: [],
+  filters: defaultFilters,
+  setCharacters: (characters) => {
+    set({characters});
   },
   setFilter: (key, value) => {
     set((state) => ({
@@ -34,16 +43,9 @@ export const useAppState = create<AppState>((set, get) => ({
       },
     }));
   },
-
   resetFilters: () => {
     set({
-      filters: {
-        search: "",
-        status: "",
-        species: "",
-        gender: "",
-        character: "",
-      },
+      filters: defaultFilters,
     });
   },
   toggleFavorite: (id) => {
@@ -55,7 +57,6 @@ export const useAppState = create<AppState>((set, get) => ({
     localStorage.setItem("favorite-characters", JSON.stringify(updated));
     set({favorites: updated});
   },
-
   isFavorite: (id) => {
     return get().favorites.includes(id);
   },

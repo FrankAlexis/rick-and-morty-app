@@ -8,6 +8,7 @@ type Props = {
   isFavorite?: boolean;
   onClick: (character: Character) => void;
   selected?: boolean;
+  className?: string;
 };
 
 export const CharacterListItem: FC<Props> = ({
@@ -15,41 +16,39 @@ export const CharacterListItem: FC<Props> = ({
   isFavorite = false,
   onClick,
   selected = false,
+  className = "",
 }) => {
   return (
-    <li
-      className={`flex justify-between items-center px-3 py-2 rounded-lg transition-all cursor-pointer
-    ${
-      selected
-        ? "bg-purple-100 text-purple-900"
-        : "hover:bg-gray-100 text-gray-700"
-    }`}
-      onClick={() => onClick(character)}
-    >
-      <img
-        src={character.image}
-        alt={character.name}
-        className="w-12 h-12 rounded-full object-cover"
-      />
-      <div className="flex-1 ml-3">
-        <p className={`text-sm ${selected ? "font-semibold" : "font-medium"}`}>
-          {character.name}
-        </p>
-        <p className="text-xs text-gray-500">{character.species}</p>
-      </div>
-      <span
-        className={`text-lg ${
-          isFavorite ? "text-green-500" : "text-gray-300"
-        } ${
-          selected ? "bg-white" : ""
-        } rounded-full p-1 transition-all cursor-pointer`}
+    <li onClick={() => onClick(character)} className={className}>
+      <div
+        className={`flex justify-between items-center px-5 py-4 rounded-lg transition-all cursor-pointer w-full
+    ${selected ? "bg-[#EEE3FF]" : ""}`}
       >
-        {isFavorite ? (
-          <FaHeart className="w-5 h-5 fill-amber-200" />
-        ) : (
-          <CiHeart className="w-5 h-5 fill-black" />
-        )}
-      </span>
+        <img
+          src={character.image}
+          alt={character.name}
+          className="w-9 h-9 rounded-full object-cover"
+        />
+        <div className="flex-1 ml-3 text-[1rem] ">
+          <p className={`font-bold  text-[#111827]`}>{character.name}</p>
+          <p className="text-[#6B7280]">{character.species}</p>
+        </div>
+        <span
+          className={`text-2xl p-[7px] ${
+            isFavorite
+              ? "text-[#53C629] border-[#53C629]"
+              : "text-[#D1D5DB] border-[#D1D5DB]"
+          } ${
+            selected ? "bg-white" : ""
+          } rounded-full p-1 transition-all cursor-pointer`}
+        >
+          {isFavorite ? (
+            <FaHeart className="w-6 h-6 fill-[#53C629]" />
+          ) : (
+            <CiHeart className="w-6 h-6 fill-[#D1D5DB]" />
+          )}
+        </span>
+      </div>
     </li>
   );
 };
