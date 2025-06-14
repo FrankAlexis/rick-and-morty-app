@@ -1,20 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CharacterRepositoryImpl } from '../../infrastructure/repositories/character-repository-impl';
 import { GetCharacters } from '../../domain/use-cases/get-characters';
 import { useAppState } from '../../infrastructure/store/appState';
 
 export const useCharacterListController = () => {
-  const { filters, isFavorite, characters, setCharacters } = useAppState();
+  const {
+    filters,
+    isFavorite,
+    characters,
+    setCharacters,
+    sortOrder,
+    setSelectedCharacterId,
+    selectedCharacterId,
+  } = useAppState();
+  const [isLoading, setIsLoading] = useState(true);
+  const deletedIds = useAppState((s) => s.deletedCharacterIds);
+  const filteredCharacters = characters.filter((c) => !deletedIds.includes(c.id));
 
-  const starred =
+  const starred = (
     filters.character === 'Starred' || filters.character === 'All'
-      ? characters.filter((c) => isFavorite(c.id))
-      : [];
+      ? filteredCharacters.filter((c) => isFavorite(c.id))
+      : []
+  ).sort((a, b) => {
+    const result = a.name.localeCompare(b.name);
+    return sortOrder === 'asc' ? result : -result;
+  });
 
-  const others =
+  const others = (
     filters.character === 'Others' || filters.character === 'All'
-      ? characters.filter((c) => !isFavorite(c.id))
-      : [];
+      ? filteredCharacters.filter((c) => !isFavorite(c.id))
+      : []
+  ).sort((a, b) => {
+    const result = a.name.localeCompare(b.name);
+    return sortOrder === 'asc' ? result : -result;
+  });
+
+  const amountOfFilters = Object.values(filters).filter((value) => value && value !== 'All').length;
+  const total = others.length + starred.length;
 
   useEffect(() => {
     const repository = new CharacterRepositoryImpl();
@@ -27,8 +49,20 @@ export const useCharacterListController = () => {
         species: filters.species,
         gender: filters.gender,
       })
-      .then(setCharacters);
+      .then(setCharacters)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [filters, setCharacters]);
 
-  return { characters, starred, others };
+  return {
+    characters,
+    starred,
+    others,
+    setSelectedCharacterId,
+    selectedCharacterId,
+    amountOfFilters,
+    total,
+    isLoading,
+  };
 };

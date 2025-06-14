@@ -3,6 +3,7 @@ import { Character } from '../../domain/entities/character';
 import { FC } from 'react';
 import { CiHeart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
+import { CommentSection } from './comment-section';
 
 type Props = {
   character: Character;
@@ -11,13 +12,9 @@ type Props = {
 const CharacterDetail: FC<Props> = ({ character }) => {
   const { isFavorite, toggleFavorite } = useAppState();
 
-  if (!character) {
-    return <p className="text-center mt-10 text-gray-500">Loading...</p>;
-  }
-
   return (
-    <div className="min-h-screen w-full bg-white px-4 py-6 sm:px-6 lg:px-8">
-      <div className="flex flex-col text-left  ml-14 lg:ml-3  ">
+    <div className="min-h-screen max-w-6xl bg-white">
+      <div className="flex flex-col text-left ml-3 mt-3">
         <div className="relative mb-6">
           <img
             src={character.image}
@@ -45,19 +42,20 @@ const CharacterDetail: FC<Props> = ({ character }) => {
 
         <h1 className="text-2xl font-bold text-[#111827] mb-1">{character.name}</h1>
         <div className="mt-2 text-sm text-gray-700 space-y-1 align-start w-full">
-          <p className="border-b border-gray-200 pb-2">
+          <div className="border-b border-gray-200 pb-2">
             <strong>Species:</strong>
             <p className="ml-1">{character.species}</p>
-          </p>
-          <p className="border-b border-gray-200 pb-2">
+          </div>
+          <div className="border-b border-gray-200 pb-2">
             <strong>Status:</strong>
             <p className="ml-1">{character.status}</p>
-          </p>
-          <p>
+          </div>
+          <div>
             <strong>Gender:</strong>
             <p className="ml-1">{character.gender}</p>
-          </p>
+          </div>
         </div>
+        <CommentSection characterId={character.id} />
       </div>
     </div>
   );

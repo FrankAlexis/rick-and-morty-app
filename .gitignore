@@ -22,3 +22,6 @@ tmpnodejsnpm-cache
 *.njsproj
 *.sln
 *.sw?
+
+coverage
+# Dependency directories

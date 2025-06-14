@@ -21,6 +21,7 @@ export const CharacterListItem: FC<Props> = ({
   return (
     <li onClick={() => onClick(character)} className={className}>
       <div
+        data-testid="character-list-item"
         className={`flex justify-between items-center px-5 py-4 rounded-lg transition-all cursor-pointer w-full
     ${selected ? 'bg-[#EEE3FF]' : ''}`}
       >
@@ -39,9 +40,9 @@ export const CharacterListItem: FC<Props> = ({
           } ${selected ? 'bg-white' : ''} rounded-full p-1 transition-all cursor-pointer`}
         >
           {isFavorite ? (
-            <FaHeart className="w-6 h-6 fill-[#53C629]" />
+            <FaHeart className="w-6 h-6 fill-[#53C629]" data-testid="favorite-icon" />
           ) : (
-            <CiHeart className="w-6 h-6 fill-[#D1D5DB]" />
+            <CiHeart className="w-6 h-6 fill-[#D1D5DB]" data-testid="favorite-icon" />
           )}
         </span>
       </div>
