@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CharacterRepositoryImpl } from '../../infrastructure/repositories/character-repository-impl';
+import { CharacterRepositoryImpl } from '../../infrastructure/adapters/character-repository-impl';
 import { GetCharacters } from '../../domain/use-cases/get-characters';
 import { useAppState } from '../../infrastructure/store/appState';
 

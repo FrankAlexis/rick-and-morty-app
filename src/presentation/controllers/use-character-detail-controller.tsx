@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CharacterRepositoryImpl } from '../../infrastructure/repositories/character-repository-impl';
+import { CharacterRepositoryImpl } from '../../infrastructure/adapters/character-repository-impl';
 import { useAppState } from '../../infrastructure/store/appState';
 import { useParams } from 'react-router-dom';
 import { Character } from '../../domain/entities/character';
@@ -14,6 +14,7 @@ export const useCharacterDetailController = () => {
 
   useEffect(() => {
     const characterId = selectedCharacterId || id;
+
     if (!characterId) return;
 
     const useCase = new CharacterRepositoryImpl();

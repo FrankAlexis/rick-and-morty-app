@@ -1,16 +1,16 @@
-import { useAppState } from '../../infrastructure/store/appState';
 import { Character } from '../../domain/entities/character';
 import { FC } from 'react';
 import { CiHeart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { CommentSection } from './comment-section';
+import { useFavoritesController } from '../controllers/use-favorites-controller';
 
 type Props = {
   character: Character;
 };
 
 const CharacterDetail: FC<Props> = ({ character }) => {
-  const { isFavorite, toggleFavorite } = useAppState();
+  const { isFavorite, toggleFavorite } = useFavoritesController();
 
   return (
     <div className="min-h-screen max-w-6xl bg-white">
